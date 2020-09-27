@@ -53,7 +53,7 @@ import {
 
 import VuejsNodeStyle from './VuejsNodeStyle.js'
 import { showApp } from '../../resources/demo-app.js'
-import orgChartData from './resources/OrgChartData.js'
+import orgChartData from './resources/OriginalData.js'
 import loadJson from '../../resources/load-json.js'
 
 /**
@@ -123,13 +123,14 @@ function run(licenseData) {
   // eslint-disable-next-line no-undef
   Vue.component('graph-component', {
     template: '<div class="graph-component"></div>',
-    created() {
+    async created() {
       // the GraphComponent is created but not appended to the DOM yet
       const graphComponent = new GraphComponent()
       this.$graphComponent = graphComponent
 
       // create a graph from the Orgchart data.
-      createGraph(orgChartData, graphComponent.graph)
+      let res = await axios("http://localhost:3000/posts");
+      createGraph(res.data, graphComponent.graph)
 
       graphComponent.focusIndicatorManager.showFocusPolicy = ShowFocusPolicy.ALWAYS
       // disable default highlight indicators
@@ -230,8 +231,8 @@ function run(licenseData) {
   function createGraph(nodesSource, graph) {
     const treeBuilder = new TreeBuilder(graph)
     const rootNodesSource = treeBuilder.createRootNodesSource(nodesSource)
-    const childNodesSource = rootNodesSource.createChildNodesSource(data => data.subordinates)
-    childNodesSource.addChildNodesSource(data => data.subordinates, childNodesSource)
+    const childNodesSource = rootNodesSource.createChildNodesSource(data => data.children)
+    childNodesSource.addChildNodesSource(data => data.children, childNodesSource)
 
     // use the VuejsNodeStyle, which uses a Vue component to display nodes
     // eslint-disable-next-line no-undef

@@ -38,6 +38,7 @@
 
   <link rel="stylesheet" href="../../node_modules/yfiles/yfiles.css">
   <link rel="stylesheet" href="../../resources/style/demo.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" integrity="sha512-quHCp3WbBNkwLfYUMd+KwBAgpVukJu5MncuQaWXgCrfgcxCJAq/fo+oqrRKOj+UKEmyMCG3tb8RB63W+EmrOBg==" crossorigin="anonymous"></script>
 
   <style>
     @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,100);
@@ -479,7 +480,7 @@
       <rect width="285" height="3" transform="translate(0 97)"></rect>
     </g>
     <g :style="{ fontSize: zoom >= 1 ? '10px' : '15px', fontFamily: 'Roboto,sans-serif', fontWeight: 300, fill: '#444' }">
-      <text :transform="zoom >= 1 ? 'translate(100 25)' : 'translate(75 40)'" :style="{ fontSize: zoom >= 1 ? '16px' : '26px', fill: '#336699' }">{{tag.name}}</text>
+      <text :transform="zoom >= 1 ? 'translate(100 25)' : 'translate(75 40)'" :style="{ fontSize: zoom >= 1 ? '16px' : '26px', fill: '#336699' }">{{tag.id}}</text>
       <text :transform="zoom >= 1 ? 'translate(100 45)' : 'translate(75 70)'" style="text-transform: uppercase; font-weight: 400">{{positionFirstLine}}</text>
       <text :transform="zoom >= 1 ? 'translate(100 57)' : 'translate(75 90)'" style="text-transform: uppercase; font-weight: 400">{{positionSecondLine}}</text>
       <text v-show="zoom >= 1" transform="translate(100 72)">{{tag.email}}</text>
@@ -496,12 +497,12 @@
       <svg width="287px" height="150px" transform="translate(-5 0)">
         <node :tag="sharedData.focusedNodeData"></node>
       </svg>
-      <label>Name<input type="text" v-model="sharedData.focusedNodeData.name"></label>
-      <label>Position<input type="text" v-model="sharedData.focusedNodeData.position"></label>
+      <label>Name<input type="text" v-model="sharedData.focusedNodeData.id"></label>
+      <!-- <label>Position<input type="text" v-model="sharedData.focusedNodeData.position"></label>
       <label>E-mail<input type="text" v-model="sharedData.focusedNodeData.email"></label>
       <label>Phone<input type="text" v-model="sharedData.focusedNodeData.phone"></label>
-      <label>Fax<input type="text" v-model="sharedData.focusedNodeData.fax"></label>
-      <label>
+      <label>Fax<input type="text" v-model="sharedData.focusedNodeData.fax"></label> -->
+      <!-- <label>
         Business Unit
         <select v-model="sharedData.focusedNodeData.businessUnit">
           <option>Executive Unit</option>
@@ -511,7 +512,7 @@
           <option>Marketing</option>
           <option>Accounting</option>
         </select>
-      </label>
+      </label> -->
     </div>
     <div v-else>No item selected.</div>
   </div>
